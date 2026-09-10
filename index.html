@@ -1,162 +1,799 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>MLKBLVD.org</title>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta
+        name="description"
+        content="The Dr. Martin Luther King Jr. Boulevard Foundation supports communities through food distribution, housing placement, education, and community programs."
+    >
 
-<title>MLKBLVD.org</title>
-<!-- Bootstrap Core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- Theme CSS -->
-<link href="css/clean-blog.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+        rel="stylesheet"
+    >
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+        rel="stylesheet"
+    >
 
-<!-- Custom Fonts -->
-<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+        body {
+            background: #f4f4f4;
+            color: #222;
+            padding-bottom: 52px;
+        }
 
+        .navbar-custom {
+            background: rgba(0, 0, 0, 0.76);
+            border: 0;
+            transition:
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .navbar-custom:hover {
+            background: rgba(0, 0, 0, 0.92);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav li a {
+            color: #fff;
+        }
+
+        .navbar-custom .nav li a {
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .navbar-custom .nav li a:hover,
+        .navbar-custom .nav li a:focus {
+            color: #ffd34e;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.42),
+                    rgba(0, 0, 0, 0.76)
+                ),
+                url("img/mlk.jpg") center 40% / cover no-repeat;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                115deg,
+                transparent 25%,
+                rgba(255, 255, 255, 0.10) 48%,
+                transparent 70%
+            );
+            transform: translateX(-120%);
+            animation: heroShine 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 130px 20px 80px;
+            animation: heroEntrance 1.1s ease-out both;
+        }
+
+        .hero h1 {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(48px, 9vw, 94px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.75);
+        }
+
+        .hero-line {
+            width: 110px;
+            height: 4px;
+            margin: 28px auto;
+            border: 0;
+            border-radius: 2px;
+            background: #ffd34e;
+            animation: expandLine 1.3s 0.4s ease both;
+        }
+
+        .hero-subheading {
+            display: block;
+            max-width: 850px;
+            margin: auto;
+            font-family: "Open Sans", sans-serif;
+            font-size: clamp(20px, 3vw, 32px);
+            line-height: 1.4;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        .video-section {
+            padding: 48px 15px;
+            background: linear-gradient(135deg, #050505, #202020);
+            color: #fff;
+        }
+
+        .video-heading {
+            margin: 0 0 25px;
+            text-align: center;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .video-frame {
+            max-width: 960px;
+            margin: auto;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.75);
+            border-radius: 14px;
+            background: #000;
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.6);
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .video-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 26px 65px rgba(0, 0, 0, 0.75);
+        }
+
+        #mlkVideo {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #000;
+        }
+
+        #videoPrompt {
+            margin: 15px 0 0;
+            text-align: center;
+            color: #ddd;
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+        }
+
+        .content-section {
+            padding: 65px 15px 95px;
+            background:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.93),
+                    rgba(255, 255, 255, 0.96)
+                ),
+                url("img/mlk.jpg") center / cover fixed;
+        }
+
+        .content-card {
+            max-width: 930px;
+            margin: 0 auto 34px;
+            padding: 38px;
+            border-left: 6px solid #2e7d32;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.13);
+            opacity: 0;
+            transform: translateY(40px);
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .content-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-card:hover {
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.19);
+        }
+
+        .content-card h2 {
+            margin-top: 0;
+            margin-bottom: 22px;
+            color: #173d1b;
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .content-card p,
+        .content-card li {
+            font-family: "Lora", serif;
+            font-size: 20px;
+            line-height: 1.75;
+        }
+
+        .goal-list {
+            padding: 0;
+            list-style: none;
+        }
+
+        .goal-list li {
+            position: relative;
+            margin: 11px 0;
+            padding: 11px 15px 11px 48px;
+            border-radius: 7px;
+            background: #f4f8f4;
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .goal-list li::before {
+            content: "\f00c";
+            position: absolute;
+            top: 12px;
+            left: 17px;
+            color: #2e7d32;
+            font-family: FontAwesome;
+        }
+
+        .goal-list li:hover {
+            background: #e2f1e3;
+            transform: translateX(7px);
+        }
+
+        .difference-message {
+            margin-top: 30px;
+            padding: 24px;
+            border-radius: 9px;
+            text-align: center;
+            background: #173d1b;
+            color: #fff;
+        }
+
+        .difference-message h3 {
+            margin: 0;
+            color: #ffd34e;
+            font-weight: 800;
+        }
+
+        #applyButton {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1050;
+            padding: 14px;
+            border: 0;
+            border-radius: 0;
+            background: linear-gradient(90deg, #16762c, #32a852, #16762c);
+            background-size: 200% 100%;
+            color: #fff;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.28);
+            animation:
+                donateGradient 4s linear infinite,
+                donatePulse 2.2s ease-in-out infinite;
+        }
+
+        #applyButton:hover,
+        #applyButton:focus {
+            color: #fff;
+            background: #126626;
+            animation: none;
+        }
+
+        .donate-modal .modal-content {
+            overflow: hidden;
+            border: 0;
+            border-radius: 14px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+        }
+
+        .donate-modal .modal-header {
+            padding: 22px;
+            border: 0;
+            background: #173d1b;
+            color: #fff;
+        }
+
+        .donate-modal .modal-title {
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .donate-modal .close {
+            color: #fff;
+            font-size: 32px;
+            opacity: 0.9;
+        }
+
+        .donate-modal .modal-body {
+            padding: 28px;
+            background: #f7f7f7;
+        }
+
+        .donation-choice {
+            display: block;
+            margin: 13px 0;
+            padding: 16px 18px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 5px 13px rgba(0, 0, 0, 0.17);
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+        }
+
+        .donation-choice:hover,
+        .donation-choice:focus {
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+            filter: brightness(1.08);
+        }
+
+        .donation-choice.primary-choice {
+            background: #23863a;
+        }
+
+        .donation-choice.veteran-choice {
+            background: #244a77;
+        }
+
+        .modal.fade .modal-dialog {
+            transform: translateY(40px) scale(0.94);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal.in .modal-dialog {
+            transform: translateY(0) scale(1);
+        }
+
+        @keyframes heroEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+
+            to {
+                width: 110px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes heroShine {
+            0%,
+            60% {
+                transform: translateX(-120%);
+            }
+
+            85%,
+            100% {
+                transform: translateX(120%);
+            }
+        }
+
+        @keyframes donateGradient {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes donatePulse {
+            0%,
+            100% {
+                box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.28);
+            }
+
+            50% {
+                box-shadow:
+                    0 -5px 28px rgba(33, 173, 69, 0.7),
+                    0 0 0 5px rgba(33, 173, 69, 0.12);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar-custom {
+                background: rgba(0, 0, 0, 0.92);
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+
+            .hero-content {
+                padding-top: 120px;
+            }
+
+            .content-card {
+                padding: 26px 21px;
+            }
+
+            .content-card h2 {
+                font-size: 29px;
+            }
+
+            .content-card p,
+            .content-card li {
+                font-size: 18px;
+            }
+
+            .content-section {
+                background-attachment: scroll;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .content-card {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                Menu <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="index.html">MLKBLVD.org</a>
-        </div>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+                <button
+                    type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target="#mainNavigation"
+                >
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="#text">About</a>
-                </li>
-                <li>
-                    <a href="https://MLKBLVD.org/DONATE.html">Donate</a>
-                </li>
-                <li>
-                    <a href="mailto:mlkblvd.org@gmail.com">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+                <a class="navbar-brand" href="index.html">MLKBLVD.org</a>
+            </div>
 
-    <div style="background-image: url(img/mlk.jpg);background-position: 55%;background-repeat: no-repeat;background-size: cover;"><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>MLKBLVD.org</h1>
-                    <hr class="small">
-                    <span class="subheading"><b>Dr. Martin Luther King Jr. Boulevard Foundation</b></span>
+            <div class="collapse navbar-collapse" id="mainNavigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#donateModal" data-toggle="modal">Donate</a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:mlkblvd.org@gmail.com">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>MLKBLVD.org</h1>
+
+            <hr class="hero-line">
+
+            <span class="hero-subheading">
+                Dr. Martin Luther King Jr. Boulevard Foundation
+            </span>
+        </div>
+    </header>
+
+    <main>
+        <section
+            class="video-section"
+            aria-labelledby="videoHeading"
+        >
+            <div class="container">
+                <h2 class="video-heading" id="videoHeading">
+                    Our Foundation
+                </h2>
+
+                <div class="video-frame">
+                    <video
+                        id="mlkVideo"
+                        controls
+                        playsinline
+                        preload="metadata"
+                        muted
+                        autoplay
+                    >
+                        <source src="video/mlkblvd.mp4" type="video/mp4">
+
+                        Your browser does not support MP4 video.
+                    </video>
+                </div>
+
+                <p id="videoPrompt">
+                    Video starts muted. Use the controls to turn on sound.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section" id="about">
+            <div class="container">
+                <article class="content-card reveal-card">
+                    <h2>Our Mission Statement</h2>
+
+                    <p>
+                        The <strong>Dr. Martin Luther King Jr. Boulevard
+                        Foundation</strong> envisions a world where the streets
+                        that bear the great name of Dr. Martin Luther King Jr.
+                        are beacons of hope for other communities to follow.
+                    </p>
+
+                    <p>
+                        Our charity emulates the values of Dr. Martin Luther
+                        King Jr.—including equality, liberty, nonviolence,
+                        education, love, selflessness, leadership, and hope—in
+                        everything we do.
+                    </p>
+
+                    <p>
+                        We strive for a better world that includes every member
+                        of society, regardless of strength, wealth, race, or
+                        religion—a world where people are judged by the content
+                        of their character.
+                    </p>
+
+                    <p>
+                        Donations to our charity will be allocated responsibly
+                        to benefit communities as effectively as possible.
+                    </p>
+                </article>
+
+                <article class="content-card reveal-card">
+                    <h2>Our Goals</h2>
+
+                    <ul class="goal-list">
+                        <li>Build strong communities</li>
+                        <li>Increase poverty awareness</li>
+                        <li>Reduce homelessness</li>
+                        <li>Create jobs</li>
+                        <li>Fight hunger and food insecurity</li>
+                        <li>Help veterans</li>
+                    </ul>
+
+                    <p>
+                        The <strong>Dr. Martin Luther King Jr. Boulevard
+                        Foundation</strong> connects, serves, and empowers
+                        citizens in need by providing free programs and
+                        services that address their needs and fill gaps in
+                        government care.
+                    </p>
+                </article>
+
+                <article class="content-card reveal-card">
+                    <h2>Our Programs</h2>
+
+                    <ul class="goal-list">
+                        <li>Food distribution</li>
+                        <li>Housing placement</li>
+                        <li>Community activities</li>
+                        <li>Free educational classes</li>
+                    </ul>
+
+                    <p>
+                        Every donation to the
+                        <strong>Dr. Martin Luther King Jr. Boulevard
+                        Foundation</strong> directly supports one of our
+                        programs.
+                    </p>
+
+                    <div class="difference-message">
+                        <h3>You Can Make a Difference—Donate Today!</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <a
+        href="#donateModal"
+        id="applyButton"
+        class="btn btn-success btn-block"
+        data-toggle="modal"
+        role="button"
+    >
+        <i class="fa fa-heart" aria-hidden="true"></i>
+        DONATE
+    </a>
+
+    <div
+        class="modal fade donate-modal"
+        id="donateModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="donateModalTitle"
+    >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h2 class="modal-title" id="donateModalTitle">
+                        Choose Where to Donate
+                    </h2>
+                </div>
+
+                <div class="modal-body">
+                    <a
+                        class="donation-choice primary-choice"
+                        href="https://MLKBLVD.org/DONATE.html"
+                    >
+                        MLKBLVD.org Foundation
+                    </a>
+
+                    <a
+                        class="donation-choice veteran-choice"
+                        href="https://heroes.vfw.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Veterans of Foreign Wars (VFW)
+                    </a>
+
+                    <a
+                        class="donation-choice veteran-choice"
+                        href="https://support.woundedwarriorproject.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Wounded Warrior Project
+                    </a>
+
+                    <a
+                        class="donation-choice veteran-choice"
+                        href="https://t2t.org/donate/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Tunnel to Towers Foundation
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</header>
 
-<a href="https://MLKBLVD.org/DONATE.html" id="applyButton" class="btn btn-success btn-block" style="position:fixed;bottom:0%;z-index:100;">DONATE</a>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/clean-blog.min.js"></script>
 
-<div id="text" style="background-image: url(img/mlk.jpg);background-position: 55%;background-repeat: no-repeat;background-size: cover;"><br>
-    <div class="container">
-            <div class="post-preview">
-                    <h1 class="post-title">
-                        Our Mission Statement
-                    </h1>
-                    <h3 class="post-subtitle" style="font-weight:normal">
-                        The <b>Dr. Martin Luther King Jr. Boulevard Foundation</b> envisions a world where the streets that bear the great name of Dr. Martin Luther King Jr. are a beacon of hope for other communities to follow.
-                        <br><br>
-                        Our charity emulates the values of Dr. Martin Luther King Jr. like equality, liberty, nonviolence, education, love, selflessness, leadership, and hope in all that we do.
-                        <br><br>
-                        We strive for a better world. One that includes all members of society no matter how strong or weak, rich or poor, no matter their race or religion. A world, as Dr. King put it, where people are not judged by the color of their skin but by the content of their character.
-                        <br><br>
-                        Donations to our charity will be allocated responsibly and appropriately to impact communities as beneficially as possible.
-                        <br>
+    <script>
+        $(function () {
+            var video = document.getElementById("mlkVideo");
 
-                    </h3>
-            </div><br>
-            <div class="post-preview" >
-                    <h1 class="post-title">
-                        Our Goals
-                    </h1>
-                    <h3 class="post-subtitle" style="font-weight:normal">
-                        <ul>
-                            <li>Build strong communities</li>
-                            <br>
-                            <li>Increase poverty awareness</li>
-                            <br>
-                            <li>Reduce homelessness</li>
-                            <br>
-                            <li>Create jobs</li>
-                            <br>
-                            <li>Fight hunger and food insecurity</li><br>
-                            <br>
-                            <li>Help Veterans</li><br>
-                        </ul>
-                        The <b>Dr. Martin Luther King Jr. Boulevard Foundation</b> connects, serves, and empowers citizens in need by providing free programs and services that address their needs and fill gaps in government care.
-                    </h3>
-            </div><br>
-            <div class="post-preview">
-                    <h1 class="post-title">
-                        Our Programs
-                    </h1>
-                    <h3 class="post-subtitle" style="font-weight:normal">
-                        <ul>
-                            <li>Food Distribution</li>
-                            <br>
-                            <li>Housing Placement</li>
-                            <br>
-                            <li>Community Activities</li>
-                            <br>
-                            <li>Free Educational Classes</li><br>
-                        </ul>
-                        Any donation to the <b>Dr. Martin Luther King Jr. Boulevard Foundation</b> goes directly to supporting one of our programs!<br>
-                        <h3>You Can Make A Difference! Donate Today!</h3>
-                        <hr>
-                        <br>
-            </div>
-        </div>
-    </div>
-</div>
+            if (video) {
+                video.muted = true;
 
-<!-- jQuery -->
-<script src="vendor/jquery/jquery.min.js"></script>
+                var playback = video.play();
 
-<!-- Bootstrap Core JavaScript -->
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+                if (playback !== undefined) {
+                    playback.catch(function () {
+                        $("#videoPrompt").text(
+                            "Press the play button to start the video."
+                        );
+                    });
+                }
+            }
 
-<!-- Contact Form JavaScript -->
-<script src="js/jqBootstrapValidation.js"></script>
-<script src="js/contact_me.js"></script>
+            $('a[href^="#"]:not([data-toggle="modal"])').on(
+                "click",
+                function (event) {
+                    var target = $(this.getAttribute("href"));
 
-<!-- Theme JavaScript -->
-<script src="js/clean-blog.min.js"></script>
+                    if (target.length) {
+                        event.preventDefault();
+
+                        $("html, body").animate(
+                            {
+                                scrollTop: target.offset().top - 65
+                            },
+                            650
+                        );
+                    }
+                }
+            );
+
+            var cards = document.querySelectorAll(".reveal-card");
+
+            if (
+                "IntersectionObserver" in window &&
+                !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ) {
+                var observer = new IntersectionObserver(
+                    function (entries) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("is-visible");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.15
+                    }
+                );
+
+                cards.forEach(function (card) {
+                    observer.observe(card);
+                });
+            } else {
+                cards.forEach(function (card) {
+                    card.classList.add("is-visible");
+                });
+            }
+
+            $("#donateModal").on("shown.bs.modal", function () {
+                $(this).find(".donation-choice").first().focus();
+            });
+        });
+    </script>
 </body>
-
 </html>
